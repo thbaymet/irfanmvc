@@ -16,12 +16,9 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "book")
-public class Book {
+public class Book extends BaseEntity {
 
-	@Id
-	@Column(name = "id")
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Long id;
+	private static final long serialVersionUID = 1L;
 	
 	@Column(name = "title")
 	private String title;
@@ -33,22 +30,14 @@ public class Book {
 	}
 
 	public Book(Long id, String title, String author) {
-		this.id = id;
-		this.title = title;
-		this.author = author;
+		this.setId(id);
+		this.setTitle(title);
+		this.setAuthor(author);
 	}
 	
 	public Book(String title, String author) {
-		this.title = title;
-		this.author = author;
-	}
-	
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
+		this.setTitle(title);
+		this.setAuthor(author);
 	}
 
 	public String getTitle() {
@@ -69,6 +58,6 @@ public class Book {
 	
 	@Override
 	public String toString() {
-		return "Book: " + this.id + ", " + this.title + ", " + this.author;
+		return "Book: " + this.getId() + ", " + this.getTitle() + ", " + this.getAuthor();
 	}
 }
